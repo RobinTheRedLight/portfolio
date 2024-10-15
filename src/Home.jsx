@@ -6,6 +6,27 @@ import { loadSlim } from "tsparticles-slim";
 import Robin from "../src/assets/Robin.jpg";
 import project1 from "../src/assets/project-1.jpg";
 import project2 from "../src/assets/project-2.png";
+import project3 from "../src/assets/project-3.png";
+import project4 from "../src/assets/project-4.jpg";
+import project5 from "../src/assets/project-5.jpg";
+import project6 from "../src/assets/project-6.png";
+import { FaReact, FaNodeJs, FaPython, FaStripeS } from "react-icons/fa";
+import {
+  SiTypescript,
+  SiRedux,
+  SiNextdotjs,
+  SiJavascript,
+  SiTailwindcss,
+  SiMongodb,
+  SiExpress,
+  SiCplusplus,
+  SiZod,
+  SiC,
+  SiFirebase,
+  SiReactquery,
+  SiAxios,
+  SiJsonwebtokens,
+} from "react-icons/si";
 
 const Home = () => {
   const homeRef = useRef();
@@ -257,7 +278,7 @@ const Home = () => {
             <h1 className="font-[Montserrat] text-3xl">
               Hello there<span className="wave">👋</span>{" "}
             </h1>
-            <p className="font-[Montserrat] text-[5em]">I'm Robin Mitra</p>
+            <p className="font-[Montserrat] text-[5em]">I&apos;m Robin Mitra</p>
             <div>
               <TypeAnimation
                 sequence={[
@@ -277,6 +298,7 @@ const Home = () => {
             <div className="pt-8">
               <a
                 target="_blank"
+                rel="noreferrer"
                 href="https://drive.google.com/file/d/1b_jjq4u0t5pT9PbOAOMABRHC4pdTF-aT/view?usp=drive_link"
                 className="btn btn-primary"
               >
@@ -314,19 +336,156 @@ const Home = () => {
       </div>
       {/* About */}
 
+      {/* Skills */}
+
+      <div className="min-h-screen pt-20" id="skills">
+        <h1 className="font-[Montserrat] text-5xl font-bold text-center">
+          Skills
+        </h1>
+        <div className="grid grid-cols-3 md:grid-cols-6 gap-8 pt-20 text-center">
+          {/* Frontend Skills */}
+          <div>
+            <SiJavascript className="text-6xl mx-auto text-[#F7DF1E]" />
+            <p>JavaScript</p>
+          </div>
+          <div>
+            <FaReact className="text-6xl mx-auto text-[#61DAFB]" />
+            <p>React</p>
+          </div>
+          <div>
+            <SiTypescript className="text-6xl mx-auto text-[#3178C6]" />
+            <p>TypeScript</p>
+          </div>
+          <div>
+            <SiRedux className="text-6xl mx-auto text-[#764ABC]" />
+            <p>Redux</p>
+          </div>
+          <div>
+            <SiNextdotjs className="text-6xl mx-auto text-[#000000]" />
+            <p>Next.js</p>
+          </div>
+
+          <div>
+            <SiReactquery className="text-6xl mx-auto text-[#FF4154]" />
+            <p>TanStack Query</p>
+          </div>
+          <div>
+            <SiAxios className="text-6xl mx-auto text-[#5A29E4]" />
+            <p>Axios</p>
+          </div>
+          <div>
+            <SiTailwindcss className="text-6xl mx-auto text-[#38B2AC]" />
+            <p>Tailwind CSS</p>
+          </div>
+
+          {/* Backend Skills */}
+          <div>
+            <FaNodeJs className="text-6xl mx-auto text-[#339933]" />
+            <p>NodeJS</p>
+          </div>
+          <div>
+            <SiExpress className="text-6xl mx-auto text-[#000000]" />
+            <p>Express.js</p>
+          </div>
+          <div>
+            <SiMongodb className="text-6xl mx-auto text-[#47A248]" />
+            <p>MongoDB</p>
+          </div>
+          <div>
+            <SiZod className="text-6xl mx-auto text-[#000000]" />
+            <p>Zod</p>
+          </div>
+
+          {/* Additional Skills */}
+          <div>
+            <FaStripeS className="text-6xl mx-auto text-[#008CDD]" />
+            <p>Stripe</p>
+          </div>
+          <div>
+            <SiFirebase className="text-6xl mx-auto text-[#FFCA28]" />
+            <p>Firebase</p>
+          </div>
+
+          <div>
+            <SiJsonwebtokens className="text-6xl mx-auto text-[#000000]" />
+            <p>JWT</p>
+          </div>
+
+          {/* Programming Languages */}
+          <div>
+            <SiC className="text-6xl mx-auto text-[#A8B9CC]" />
+            <p>C</p>
+          </div>
+          <div>
+            <SiCplusplus className="text-6xl mx-auto text-[#00599C]" />
+            <p>C++</p>
+          </div>
+          <div>
+            <FaPython className="text-6xl mx-auto text-[#306998]" />
+            <p>Python</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Skills */}
+
       {/* Projects */}
       <div className=" min-h-screen pt-20" id="projects" ref={projectsRef}>
         <h1 className="font-[Montserrat] text-5xl font-bold text-center">
           Projects
         </h1>
-        <div className=" md:flex pt-20 md:justify-evenly ">
+        <div className=" grid grid-col-1 pt-20 md:grid-cols-3 gap-10 ">
           <div className="card w-96 bg-base-100 shadow-xl mx-auto md:mx-0">
-            <figure>
-              <img src={project1} alt="Shoes" />
+            <figure className="h-56">
+              <img src={project3} alt="project" />
             </figure>
             <div className="card-body">
               <h2 className="card-title">
                 Project 01:
+                <div className="badge badge-secondary p-5">Ride & Roll</div>
+              </h2>
+
+              <div className="card-actions justify-center pt-5">
+                <a
+                  href="https://rideandroll.netlify.app/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="badge badge-outline p-4"
+                >
+                  Visit
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="card w-96 bg-base-100 shadow-xl mx-auto md:mx-0">
+            <figure className="h-56">
+              <img src={project4} alt="project" />
+            </figure>
+            <div className="card-body">
+              <h2 className="card-title">
+                Project 02:
+                <div className="badge badge-secondary p-5">Pet Tales</div>
+              </h2>
+
+              <div className="card-actions justify-center pt-5">
+                <a
+                  href="https://grand-khapse-06c64b.netlify.app/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="badge badge-outline p-4"
+                >
+                  Visit
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="card w-96 bg-base-100 shadow-xl mx-auto md:mx-0">
+            <figure className="h-56">
+              <img src={project1} alt="project" />
+            </figure>
+            <div className="card-body">
+              <h2 className="card-title">
+                Project 03:
                 <div className="badge badge-secondary p-5">Amici Italiano</div>
               </h2>
 
@@ -334,6 +493,7 @@ const Home = () => {
                 <a
                   href="https://restaurant-59678.web.app/"
                   target="_blank"
+                  rel="noreferrer"
                   className="badge badge-outline p-4"
                 >
                   Visit
@@ -342,12 +502,12 @@ const Home = () => {
             </div>
           </div>
           <div className="card w-96 bg-base-100 shadow-xl mx-auto md:mx-0 pt-10 md:pt-0">
-            <figure>
-              <img src={project2} alt="Shoes" />
+            <figure className="h-56">
+              <img src={project2} alt="project" />
             </figure>
             <div className="card-body">
               <h2 className="card-title">
-                Project 02:
+                Project 04:
                 <div className="badge badge-secondary p-5">Doctors Portal</div>
               </h2>
 
@@ -355,6 +515,51 @@ const Home = () => {
                 <a
                   href="https://doctors-portal-5471b.web.app/"
                   target="_blank"
+                  rel="noreferrer"
+                  className="badge badge-outline p-4"
+                >
+                  Visit
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="card w-96 bg-base-100 shadow-xl mx-auto md:mx-0 pt-10 md:pt-0">
+            <figure className="h-56">
+              <img src={project5} alt="project" />
+            </figure>
+            <div className="card-body">
+              <h2 className="card-title">
+                Project 05:
+                <div className="badge badge-secondary p-5">Sport Spot</div>
+              </h2>
+
+              <div className="card-actions justify-center pt-5">
+                <a
+                  href="https://curious-pudding-47513a.netlify.app/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="badge badge-outline p-4"
+                >
+                  Visit
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="card w-96 bg-base-100 shadow-xl mx-auto md:mx-0 pt-10 md:pt-0">
+            <figure className="h-56">
+              <img src={project6} alt="project" />
+            </figure>
+            <div className="card-body">
+              <h2 className="card-title">
+                Project 06:
+                <div className="badge badge-secondary p-5">Quiz-Appraisal</div>
+              </h2>
+
+              <div className="card-actions justify-center pt-5">
+                <a
+                  href="https://quizappraisal.netlify.app/"
+                  target="_blank"
+                  rel="noreferrer"
                   className="badge badge-outline p-4"
                 >
                   Visit
@@ -368,7 +573,7 @@ const Home = () => {
       {/* Projects */}
 
       {/* Contact */}
-      <div className="pb-10 pt-20" id="contract" ref={contactRef}>
+      <div className=" pb-10 pt-20" id="contract" ref={contactRef}>
         <h1 className="font-[Montserrat] text-5xl font-bold text-center">
           Contact Me
         </h1>
@@ -387,14 +592,17 @@ const Home = () => {
             <nav>
               <h6 className="footer-title">Social</h6>
               <div className="grid grid-flow-col gap-4">
-                <a href="https://github.com/RobinTheRedLight" target="_blank">
+                <a
+                  href="https://github.com/RobinTheRedLight"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <svg
                     width="48"
                     height="48"
                     viewBox="0 0 20 20"
                     version="1.1"
                     xmlns="http://www.w3.org/2000/svg"
-                    xmlns:xlink="http://www.w3.org/1999/xlink"
                   >
                     <title>github [#142]</title>
                     <desc>Created with Sketch.</desc>
@@ -402,9 +610,9 @@ const Home = () => {
                     <g
                       id="Page-1"
                       stroke="none"
-                      stroke-width="1"
+                      strokeWidth="1"
                       fill="none"
-                      fill-rule="evenodd"
+                      fillRule="evenodd"
                     >
                       <g
                         id="Dribbble-Light-Preview"
@@ -427,6 +635,7 @@ const Home = () => {
                 <a
                   href="https://www.linkedin.com/in/robin-mitra-9129809b/"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   <svg
                     width="48"
