@@ -9,6 +9,8 @@ import About from "./components/About";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
+import Blogs from "./components/Blogs";
+import Education from "./components/Education";
 
 const Home = () => {
   const homeRef = useRef();
@@ -16,6 +18,7 @@ const Home = () => {
   const projectsRef = useRef();
   const contactRef = useRef();
   const skillsRef = useRef();
+  const blogRef = useRef();
 
   const particlesInit = useCallback(async (engine) => {
     await loadSlim(engine);
@@ -108,6 +111,7 @@ const Home = () => {
         projectsRef={projectsRef}
         contactRef={contactRef}
         skillsRef={skillsRef}
+        blogRef={blogRef}
       />
       {/* Navbar */}
 
@@ -119,6 +123,10 @@ const Home = () => {
       <About aboutRef={aboutRef} />
       {/* About */}
 
+      {/* Education */}
+      <Education />
+      {/* Education */}
+
       {/* Skills */}
       <Skills skillsRef={skillsRef} />
       {/* Skills */}
@@ -126,6 +134,10 @@ const Home = () => {
       {/* Projects */}
       <Projects projectsRef={projectsRef} />
       {/* Projects */}
+
+      {/* Blog */}
+      <Blogs blogRef={blogRef} />
+      {/* Blog */}
 
       {/* Contact */}
       <Contact contactRef={contactRef} />

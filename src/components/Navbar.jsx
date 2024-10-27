@@ -1,7 +1,14 @@
 /* eslint-disable react/prop-types */
-const Navbar = ({ homeRef, aboutRef, projectsRef, contactRef, skillsRef }) => {
+const Navbar = ({
+  homeRef,
+  aboutRef,
+  projectsRef,
+  contactRef,
+  skillsRef,
+  blogRef,
+}) => {
   return (
-    <div className="navbar fixed max-w-screen-xl z-10">
+    <div className="navbar fixed max-w-screen-xl z-10 ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -66,6 +73,17 @@ const Navbar = ({ homeRef, aboutRef, projectsRef, contactRef, skillsRef }) => {
                 }}
               >
                 Projects
+              </a>
+            </li>
+            <li>
+              <a
+                onClick={() => {
+                  blogRef.current?.scrollIntoView({
+                    behavior: "smooth",
+                  });
+                }}
+              >
+                Blogs
               </a>
             </li>
             <li>
@@ -153,6 +171,17 @@ const Navbar = ({ homeRef, aboutRef, projectsRef, contactRef, skillsRef }) => {
               }}
             >
               Projects
+            </a>
+          </li>
+          <li>
+            <a
+              onClick={() => {
+                blogRef.current?.scrollIntoView({
+                  behavior: "smooth",
+                });
+              }}
+            >
+              Blogs
             </a>
           </li>
           <li>

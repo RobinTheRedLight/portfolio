@@ -1,150 +1,136 @@
 /* eslint-disable react/prop-types */
-import project1 from "../assets/project-1.jpg";
-import project2 from "../assets/project-2.png";
-import project3 from "../assets/project-3.png";
-import project4 from "../assets/project-4.jpg";
-import project5 from "../assets/project-5.jpg";
-import project6 from "../assets/project-6.png";
+import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { useProjectsQuery } from "../redux/features/project/projectApi";
+import { motion } from "framer-motion";
+import { fadeLeft } from "../Animation/constant";
 
 const Projects = ({ projectsRef }) => {
+  const navigate = useNavigate();
+  const {
+    data: projectsData = [],
+    isLoading,
+    isError,
+    error,
+  } = useProjectsQuery();
+
+  const techColors = {
+    React: "bg-blue-100 text-blue-800",
+    "Node.js": "bg-green-100 text-green-800",
+    "Tailwind CSS": "bg-teal-100 text-teal-800",
+    "Express.js": "bg-green-100 text-green-800",
+    MongoDB: "bg-green-100 text-green-800",
+    JWT: "bg-yellow-100 text-yellow-800",
+    Firebase: "bg-orange-100 text-orange-800",
+    Stripe: "bg-purple-100 text-purple-800",
+    Redux: "bg-purple-100 text-purple-800",
+    TypeScript: "bg-blue-100 text-blue-800",
+    "Next.js:": "bg-white text-black",
+    Mongoose: "bg-green-100 text-green-800",
+    Zod: "bg-yellow-100 text-yellow-800",
+    "TanStack Query": "bg-red-100 text-red-800",
+    Axios: "bg-yellow-100 text-yellow-800",
+    Recharts: "bg-orange-100 text-orange-800",
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <span className="loading loading-dots loading-lg"></span>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-red-500">Failed to load projects: {error.message}</p>
+      </div>
+    );
+  }
+
   return (
-    <div className=" min-h-screen pt-20" id="projects" ref={projectsRef}>
+    <div className=" py-20" id="projects" ref={projectsRef}>
       <h1 className="font-[Montserrat] text-5xl font-bold text-center">
         Projects
       </h1>
-      <div className=" grid grid-col-1 pt-20 md:grid-cols-3 gap-10 ">
-        <div className="card w-96 bg-base-100 shadow-xl mx-auto md:mx-0">
-          <figure className="h-56">
-            <img src={project3} alt="project" />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">
-              Project 01:
-              <div className="badge badge-secondary p-5">Ride & Roll</div>
-            </h2>
-
-            <div className="card-actions justify-center pt-5">
-              <a
-                href="https://rideandroll.netlify.app/"
-                target="_blank"
-                rel="noreferrer"
-                className="badge badge-outline p-4"
-              >
-                Visit
-              </a>
+      <div className="grid grid-cols-1 gap-10 pt-20 px-4">
+        {projectsData.map((project, index) => (
+          <motion.div
+            variants={fadeLeft}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            key={index}
+            className="bg-base-200 rounded-lg shadow-md overflow-hidden"
+          >
+            {/* Adjusted Container for Image and Details */}
+            <div className="flex flex-col lg:flex-row">
+              {/* Image Section */}
+              <img
+                src={project.image}
+                alt={project.name}
+                className="w-full h-48 md:h-80 md:object-cover  lg:w-1/2 lg:my-auto lg:p-5"
+              />
+              {/* Details Section */}
+              <div className="p-6 flex-1">
+                <h2 className="text-2xl font-bold mb-2">{project.name}</h2>
+                <div className="flex flex-wrap items-center mb-4">
+                  <a
+                    href={project.liveSiteLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-500 hover:text-blue-700 flex items-center mr-4 mb-2"
+                  >
+                    <FaExternalLinkAlt className="mr-1" /> Live Site
+                  </a>
+                  <a
+                    href={project.clientCodeLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className=" hover:text-blue-700 flex items-center mr-4 mb-2"
+                  >
+                    <FaGithub className="mr-1" /> Client Code
+                  </a>
+                  {project.serverCodeLink && (
+                    <a
+                      href={project.serverCodeLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className=" hover:text-blue-700 flex items-center mb-2"
+                    >
+                      <FaGithub className="mr-1" /> Server Code
+                    </a>
+                  )}
+                </div>
+                {/* Technologies Section */}
+                <div className="mb-4">
+                  <h3 className="text-xl font-semibold mb-2">
+                    Technologies Used:
+                  </h3>
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className={`${
+                          techColors[tech] || "bg-gray-200 text-gray-800"
+                        } px-3 py-1 rounded-full text-sm`}
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                <button
+                  onClick={() => navigate(`/projects/${project._id}`)}
+                  className="btn btn-outline"
+                >
+                  Read Details
+                </button>
+              </div>
             </div>
-          </div>
-        </div>
-        <div className="card w-96 bg-base-100 shadow-xl mx-auto md:mx-0">
-          <figure className="h-56">
-            <img src={project4} alt="project" />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">
-              Project 02:
-              <div className="badge badge-secondary p-5">Pet Tales</div>
-            </h2>
-
-            <div className="card-actions justify-center pt-5">
-              <a
-                href="https://grand-khapse-06c64b.netlify.app/"
-                target="_blank"
-                rel="noreferrer"
-                className="badge badge-outline p-4"
-              >
-                Visit
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="card w-96 bg-base-100 shadow-xl mx-auto md:mx-0">
-          <figure className="h-56">
-            <img src={project1} alt="project" />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">
-              Project 03:
-              <div className="badge badge-secondary p-5">Amici Italiano</div>
-            </h2>
-
-            <div className="card-actions justify-center pt-5">
-              <a
-                href="https://restaurant-59678.web.app/"
-                target="_blank"
-                rel="noreferrer"
-                className="badge badge-outline p-4"
-              >
-                Visit
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="card w-96 bg-base-100 shadow-xl mx-auto md:mx-0 pt-10 md:pt-0">
-          <figure className="h-56">
-            <img src={project2} alt="project" />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">
-              Project 04:
-              <div className="badge badge-secondary p-5">Doctors Portal</div>
-            </h2>
-
-            <div className="card-actions justify-center pt-5">
-              <a
-                href="https://doctors-portal-5471b.web.app/"
-                target="_blank"
-                rel="noreferrer"
-                className="badge badge-outline p-4"
-              >
-                Visit
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="card w-96 bg-base-100 shadow-xl mx-auto md:mx-0 pt-10 md:pt-0">
-          <figure className="h-56">
-            <img src={project5} alt="project" />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">
-              Project 05:
-              <div className="badge badge-secondary p-5">Sport Spot</div>
-            </h2>
-
-            <div className="card-actions justify-center pt-5">
-              <a
-                href="https://curious-pudding-47513a.netlify.app/"
-                target="_blank"
-                rel="noreferrer"
-                className="badge badge-outline p-4"
-              >
-                Visit
-              </a>
-            </div>
-          </div>
-        </div>
-        <div className="card w-96 bg-base-100 shadow-xl mx-auto md:mx-0 pt-10 md:pt-0">
-          <figure className="h-56">
-            <img src={project6} alt="project" />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">
-              Project 06:
-              <div className="badge badge-secondary p-5">Quiz-Appraisal</div>
-            </h2>
-
-            <div className="card-actions justify-center pt-5">
-              <a
-                href="https://quizappraisal.netlify.app/"
-                target="_blank"
-                rel="noreferrer"
-                className="badge badge-outline p-4"
-              >
-                Visit
-              </a>
-            </div>
-          </div>
-        </div>
+          </motion.div>
+        ))}
       </div>
     </div>
   );

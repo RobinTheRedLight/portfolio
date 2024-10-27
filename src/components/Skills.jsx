@@ -1,108 +1,95 @@
 /* eslint-disable react/prop-types */
-import { FaReact, FaNodeJs, FaPython, FaStripeS } from "react-icons/fa";
-import {
-  SiTypescript,
-  SiRedux,
-  SiNextdotjs,
-  SiJavascript,
-  SiTailwindcss,
-  SiMongodb,
-  SiExpress,
-  SiCplusplus,
-  SiZod,
-  SiC,
-  SiFirebase,
-  SiReactquery,
-  SiAxios,
-  SiJsonwebtokens,
-} from "react-icons/si";
+
+import { fadeLeft, fadeRight } from "../Animation/constant";
+import { useSkillsQuery } from "../redux/features/skill/skillApi";
+import { motion } from "framer-motion";
+
 const Skills = ({ skillsRef }) => {
+  const { data: skillsData = [], isLoading } = useSkillsQuery();
+  if (isLoading) {
+    return (
+      <div className="h-screen flex items-center justify-center">
+        <span className="loading loading-dots loading-lg"></span>
+      </div>
+    );
+  }
+
+  if (skillsData.length === 0) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-gray-500">No skills available.</p>
+      </div>
+    );
+  }
+
+  const frontendAndBackendData = skillsData.filter(
+    (skill) => skill.category === "Frontend and Backend"
+  );
+
+  const languagesData = skillsData.filter(
+    (skill) => skill.category === "Languages and Tools"
+  );
+
+  if (frontendAndBackendData.length === 0 || languagesData.length === 0) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <p className="text-gray-500">No skills available.</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="min-h-screen pt-20 " ref={skillsRef} id="skills">
-      <h1 className="font-[Montserrat] text-5xl font-bold text-center">
-        Skills
+    <div
+      className=" py-20 px-4 sm:px-6 md:px-8 lg:px-20 overflow-hidden"
+      ref={skillsRef}
+      id="skills"
+    >
+      <h1 className="font-[Montserrat] text-3xl md:text-5xl font-bold text-start">
+        SKILLS
       </h1>
-      <div className="grid grid-cols-3 md:grid-cols-6 gap-8 pt-20 text-center">
-        {/* Frontend Skills */}
-        <div>
-          <SiJavascript className="text-6xl mx-auto text-[#F7DF1E]" />
-          <p>JavaScript</p>
-        </div>
-        <div>
-          <FaReact className="text-6xl mx-auto text-[#61DAFB]" />
-          <p>React</p>
-        </div>
-        <div>
-          <SiTypescript className="text-6xl mx-auto text-[#3178C6]" />
-          <p>TypeScript</p>
-        </div>
-        <div>
-          <SiRedux className="text-6xl mx-auto text-[#764ABC]" />
-          <p>Redux</p>
-        </div>
-        <div>
-          <SiNextdotjs className="text-6xl mx-auto text-[#000000]" />
-          <p>Next.js</p>
-        </div>
-
-        <div>
-          <SiReactquery className="text-6xl mx-auto text-[#FF4154]" />
-          <p>TanStack Query</p>
-        </div>
-        <div>
-          <SiAxios className="text-6xl mx-auto text-[#5A29E4]" />
-          <p>Axios</p>
-        </div>
-        <div>
-          <SiTailwindcss className="text-6xl mx-auto text-[#38B2AC]" />
-          <p>Tailwind CSS</p>
+      <div className="pt-5 flex flex-col lg:flex-row w-full gap-10 lg:gap-20">
+        <div className="flex-1">
+          <h1 className="font-[Montserrat] text-xl md:text-3xl font-bold text-start">
+            Frontend and Backend
+          </h1>
+          <motion.div
+            variants={fadeLeft}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="flex flex-wrap gap-2 md:gap-4 pt-5 md:pt-10"
+          >
+            {frontendAndBackendData.map((skill) => (
+              <p
+                key={skill._id}
+                className="px-4 py-1 rounded-full text-sm md:text-lg bg-neutral"
+              >
+                {skill.skillName}
+              </p>
+            ))}
+          </motion.div>
         </div>
 
-        {/* Backend Skills */}
-        <div>
-          <FaNodeJs className="text-6xl mx-auto text-[#339933]" />
-          <p>NodeJS</p>
-        </div>
-        <div>
-          <SiExpress className="text-6xl mx-auto text-[#000000]" />
-          <p>Express.js</p>
-        </div>
-        <div>
-          <SiMongodb className="text-6xl mx-auto text-[#47A248]" />
-          <p>MongoDB</p>
-        </div>
-        <div>
-          <SiZod className="text-6xl mx-auto text-[#000000]" />
-          <p>Zod</p>
-        </div>
-
-        {/* Additional Skills */}
-        <div>
-          <FaStripeS className="text-6xl mx-auto text-[#008CDD]" />
-          <p>Stripe</p>
-        </div>
-        <div>
-          <SiFirebase className="text-6xl mx-auto text-[#FFCA28]" />
-          <p>Firebase</p>
-        </div>
-
-        <div>
-          <SiJsonwebtokens className="text-6xl mx-auto text-[#000000]" />
-          <p>JWT</p>
-        </div>
-
-        {/* Programming Languages */}
-        <div>
-          <SiC className="text-6xl mx-auto text-[#A8B9CC]" />
-          <p>C</p>
-        </div>
-        <div>
-          <SiCplusplus className="text-6xl mx-auto text-[#00599C]" />
-          <p>C++</p>
-        </div>
-        <div>
-          <FaPython className="text-6xl mx-auto text-[#306998]" />
-          <p>Python</p>
+        <div className="flex-1">
+          <h1 className="font-[Montserrat] text-xl md:text-3xl font-bold text-start">
+            Languages and Tools
+          </h1>
+          <motion.div
+            variants={fadeRight}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="flex flex-wrap gap-2 md:gap-4 pt-5 md:pt-10"
+          >
+            {languagesData.map((skill) => (
+              <p
+                key={skill._id}
+                className="px-4 py-1 rounded-full text-sm md:text-lg bg-neutral"
+              >
+                {skill.skillName}
+              </p>
+            ))}
+          </motion.div>
         </div>
       </div>
     </div>
